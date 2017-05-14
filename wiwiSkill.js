@@ -50,10 +50,8 @@ const order = {
 const mainFunc = (event) => {
   if (event.type === 'message') {
     const text = event.message.text;
-    console.log(`get message ${event.message.text}`);
     const commandList = Object.keys(order);
     const commandIndex = commandList.findIndex(command => command === text);
-    console.log(`commandList ${commandList}, commandIndex ${commandIndex}`);
     (commandIndex > -1) && order[commandList[commandIndex]](event);
   }
 };
