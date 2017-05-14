@@ -27,9 +27,15 @@ const redis = require('./redis.js');
 //      content: [Function] },
 //   reply: [Function] }
 
+const jokeList = [
+  '你知道什麼蜜蜂最長壽嗎？ 答案是高齡峰 😘',
+  '阿罵跟孫女去湖邊，孫女掉到湖裡，湖中女神問她在找什麼，阿罵:[我在找金孫]，湖中女神:[你太貪心了]',
+];
+
 
 const talkingJoke = (event) => {
-  event.reply('現在不太會說笑話，請大家再幫我完善功能')
+  const joke = jokeList[Math.floor(Math.random() * jokeList.length)]
+  event.reply(joke);
 }
 
 const rememberGroup = (event) => {
