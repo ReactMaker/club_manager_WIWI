@@ -69,7 +69,7 @@ const jokeList = [
 
 const talkingJoke = (event) => {
   const joke = jokeList[Math.floor(Math.random() * jokeList.length)]
-  event.reply(joke);
+  event.reply(`乖喔～ 🤗 wiwi講笑話給你聽: 　${joke}`);
 }
 
 const rememberGroup = (event) => {
@@ -83,15 +83,15 @@ const rememberGroup = (event) => {
 }
 
 const order = {
-  'wiwi這是你家': rememberGroup,
-  'wiwi說笑話': talkingJoke,
+  '這是你家': rememberGroup,
+  '笑話|無聊|愛睏|想睡': talkingJoke,
 };
 
 const mainFunc = (event) => {
-  if (event.type === 'message') {
+  if ((event.type === 'message') && (event.message.text.toLowerCase().indexOf('wiwi') > -1)) {
     const text = event.message.text;
     const commandList = Object.keys(order);
-    const commandIndex = commandList.findIndex(command => command === text);
+    const commandIndex = commandList.findIndex(command => new RegExp(command).test(text));
     (commandIndex > -1) && order[commandList[commandIndex]](event);
   }
 };
